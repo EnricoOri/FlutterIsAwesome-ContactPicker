@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_is_awesome/flutter_is_awesome.dart';
 
 void main() {
@@ -41,7 +38,7 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
               Text(
-                  _contact
+                  _contact ?? ''
               )
             ],
           ),

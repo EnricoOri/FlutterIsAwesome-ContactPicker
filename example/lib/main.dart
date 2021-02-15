@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_is_awesome/flutter_is_awesome.dart';
 
 void main() {
@@ -11,7 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   String _contact = 'Unknown';
 
   @override
@@ -29,21 +29,26 @@ class _MyAppState extends State<MyApp> {
                 color: Colors.red,
                 textColor: Colors.white,
                 child: Text('Picker'),
-                onPressed: () async {
-                  _contact = await FlutterIsAwesome.getAContact();
-                  print(_contact);
-                  setState(() {
-
-                  });
-                },
+                onPressed: () => _getAContact(),
               ),
-              Text(
-                  _contact ?? ''
-              )
+              Text(_contact ?? '')
             ],
           ),
         ),
       ),
     );
+  }
+
+  _getAContact() async {
+    String contact;
+    try {
+      contact = await FlutterIsAwesome.getAContact();
+    } on PlatformException {
+      contact = 'Failed to get contact.';
+    }
+    if (!mounted) return;
+    setState(() {
+      _contact = contact;
+    });
   }
 }

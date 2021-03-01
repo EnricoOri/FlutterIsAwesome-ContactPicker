@@ -18,7 +18,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 class FlutterIsAwesomePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener {
 
   val PICK_CONTACT_RESULT_CODE = 36
-  var act: android.app.Activity? = null
+  var act: Activity? = null
   private lateinit var channel : MethodChannel
   private lateinit var result: Result
 
